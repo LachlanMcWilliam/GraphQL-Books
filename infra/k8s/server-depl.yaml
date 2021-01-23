@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: graphql-server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: graphql-server
+  template:
+    metadata:
+      labels:
+        app: graphql-server
+    spec:
+      containers:
+      - name: graphql-server
+        image: lachlanmcwilliam/graphql-server-netninja
+        env:
+          - name: SERVICE_PORT
+            value: "3000"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: graphql-server-service
+spec:
+  type: ClusterIP
+  selector:
+    app: graphql-server
+  ports:
+  - name: graphql
+    protocol: TCP
+    port: 3000
+    targetPort: 3000
+
