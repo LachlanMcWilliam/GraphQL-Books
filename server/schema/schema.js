@@ -1,6 +1,14 @@
 import graphql from "graphql";
+import lodash from "lodash";
 
 const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
+
+//dummy data
+const books = [
+  { name: "Lord of The Rings", genre: "Fantasy", id: "1" },
+  { name: "The Hobbit", genre: "Fantasy", id: "2" },
+  { name: "The Long Earth", genre: "Sci-Fi", id: "3" },
+];
 
 const BookType = new GraphQLObjectType({
   name: "Book",
@@ -19,6 +27,7 @@ const RootQuery = new GraphQLObjectType({
       args: {
         id: { type: GraphQLString },
         resolve(parent, args) {
+          return lodash.find(books, { id: args.id });
           // Code for data
         },
       },
