@@ -1,4 +1,5 @@
 import express from "express";
+import { BookSchema } from "./schema/schema.js";
 import { graphqlHTTP } from "express-graphql";
 
 if (!process.env.SERVICE_PORT) {
@@ -7,7 +8,12 @@ if (!process.env.SERVICE_PORT) {
 
 const app = express();
 
-app.use("/graphql", graphqlHTTP);
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema: BookSchema,
+  })
+);
 
 app.listen(process.env.SERVICE_PORT, () => {
   console.log(`GraphQL server listening on port ${process.env.SERVICE_PORT}`);
