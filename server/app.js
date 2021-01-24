@@ -12,6 +12,7 @@ app.use(
   "/graphql",
   graphqlHTTP({
     schema: BookSchema,
+    graphiql: true,
   })
 );
 

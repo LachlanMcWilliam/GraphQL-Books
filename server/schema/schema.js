@@ -24,12 +24,9 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     book: {
       type: BookType,
-      args: {
-        id: { type: GraphQLString },
-        resolve(parent, args) {
-          return lodash.find(books, { id: args.id });
-          // Code for data
-        },
+      args: { id: { type: GraphQLString } },
+      resolve(parent, args) {
+        return lodash.find(books, { id: args.id });
       },
     },
   },
