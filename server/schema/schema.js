@@ -1,7 +1,13 @@
 import graphql from "graphql";
 import lodash from "lodash";
 
-const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID } = graphql;
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLSchema,
+  GraphQLID,
+  GraphQLInt,
+} = graphql;
 
 //dummy data
 const books = [
@@ -25,6 +31,15 @@ const BookType = new GraphQLObjectType({
   }),
 });
 
+const AuthorType = new GraphQLObjectType({
+  name: "Author",
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    age: { type: GraphQLInt },
+  }),
+});
+
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
@@ -33,6 +48,13 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return lodash.find(books, { id: args.id });
+      },
+    },
+    author: {
+      type: AuthorType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return lodash.find(authors, { id: args.id });
       },
     },
   },
