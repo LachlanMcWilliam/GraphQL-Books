@@ -6,8 +6,14 @@ const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID } = graphql;
 //dummy data
 const books = [
   { name: "Lord of The Rings", genre: "Fantasy", id: "1" },
-  { name: "The Hobbit", genre: "Fantasy", id: "2" },
+  { name: "The Final Empire", genre: "Fantasy", id: "2" },
   { name: "The Long Earth", genre: "Sci-Fi", id: "3" },
+];
+
+const authors = [
+  { name: "J.R.R. Tolkien", age: 81, id: "1" },
+  { name: "Brandon Sanderson", age: 42, id: "2" },
+  { name: "Terry Pratchett", age: 66, id: "3" },
 ];
 
 const BookType = new GraphQLObjectType({
