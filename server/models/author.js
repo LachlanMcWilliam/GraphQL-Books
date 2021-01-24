@@ -5,6 +5,6 @@ const AuthorSchema = new Schema({
   age: Number,
 });
 
-const AuthorModel = model("Author", AuthorSchema);
+const Author = model("Author", AuthorSchema);
 
-export { AuthorModel };
+export { Author };

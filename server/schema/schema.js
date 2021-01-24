@@ -1,4 +1,6 @@
 import graphql from "graphql";
+import { Book } from "../models/book.js";
+import { Author } from "../models/author.js";
 import lodash from "lodash";
 
 const {
@@ -19,7 +21,7 @@ const BookType = new GraphQLObjectType({
     author: {
       type: AuthorType,
       resolve(parent, args) {
-        return lodash.find(authors, { id: parent.id });
+        // return lodash.find(authors, { id: parent.id });
       },
     },
   }),
@@ -34,7 +36,7 @@ const AuthorType = new GraphQLObjectType({
     books: {
       type: new GraphQLList(BookType),
       resolve(parent, args) {
-        return lodash.filter(books, { authorId: parent.id });
+        // return lodash.filter(books, { authorId: parent.id });
       },
     },
   }),
@@ -47,14 +49,14 @@ const RootQuery = new GraphQLObjectType({
       type: BookType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
-        return lodash.find(books, { id: args.id });
+        // return lodash.find(books, { id: args.id });
       },
     },
     author: {
       type: AuthorType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
-        return lodash.find(authors, { id: args.id });
+        // return lodash.find(authors, { id: args.id });
       },
     },
     books: {

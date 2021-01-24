@@ -6,6 +6,6 @@ const BookSchema = new Schema({
   authorId: String,
 });
 
-const BookModel = model("Book", BookSchema);
+const Book = model("Book", BookSchema);
 
-export { BookModel };
+export { Book };
