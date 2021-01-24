@@ -24,3 +24,10 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
+# I don't want to get into ssr in this project so you'll have to run the `--port-forward` flag when running this project to get it working
+portForward:
+  - resourceType: Deployment
+    resourceName: graphql-server-deployment
+    namespace: default
+    port: 3000
+    localPort: 3000
