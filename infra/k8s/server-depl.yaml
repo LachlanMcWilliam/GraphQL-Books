@@ -16,6 +16,8 @@ spec:
       - name: graphql-server
         image: lachlanmcwilliam/graphql-server-netninja
         env:
+          - name: MONGO_URI
+            value: "mongodb://server-mongo-srv:27017/books"
           - name: SERVICE_PORT
             value: "3000"
 ---
