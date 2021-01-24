@@ -14,3 +14,7 @@ spec:
             backend:
               serviceName: graphql-server-service
               servicePort: 3000
+          - path: /?(.*)
+            backend:
+              serviceName: graphql-frontend-service
+              servicePort: 3000

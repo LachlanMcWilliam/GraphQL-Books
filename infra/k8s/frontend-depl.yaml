@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: graphql-frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: graphql-frontend
+  template:
+    metadata:
+      labels:
+        app: graphql-frontend
+    spec:
+      containers:
+      - name: graphql-frontend
+        image: lachlanmcwilliam/graphql-frontend-netninja
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: graphql-frontend-service
+spec:
+  type: ClusterIP
+  selector:
+    app: graphql-frontend
+  ports:
+  - name: graphql-frontend
+    protocol: TCP
+    port: 3000
+    targetPort: 3000
+
