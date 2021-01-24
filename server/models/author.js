@@ -1,10 +1,10 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 
-const AuthorSchema = new Schema({
+const AuthorSchema = new mongoose.Schema({
   name: String,
   age: Number,
 });
 
-const Author = model("Author", AuthorSchema);
+const Author = mongoose.model("Author", AuthorSchema);
 
 export { Author };

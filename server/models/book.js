@@ -1,11 +1,11 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 
-const BookSchema = new Schema({
+const BookSchema = new mongoose.Schema({
   name: String,
   genre: String,
   authorId: String,
 });
 
-const Book = model("Book", BookSchema);
+const Book = mongoose.model("Book", BookSchema);
 
 export { Book };
