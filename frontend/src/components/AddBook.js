@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery, useMutation, useApolloClient } from "@apollo/client";
 
 import { GET_AUTHORS } from "../queries/queries";
 import { ADD_BOOK } from "../queries/mutations";
@@ -12,6 +12,8 @@ const AddBook = () => {
   const { loading, error, data } = useQuery(GET_AUTHORS);
   const [addBook] = useMutation(ADD_BOOK);
 
+  const client = useApolloClient();
+
   if (error) return <p>Error: {error.message}</p>;
 
   const onSubmit = async (event) => {
@@ -19,6 +21,10 @@ const AddBook = () => {
     addBook({
       variables: { name: bookName, genre: bookGenre, authorId: authorId },
     });
+
+    // I want to find a better alt to this, as this will perform all queries that are attached to the client
+    // but for now this suits
+    client.reFetchObservableQueries();
   };
 
   return (
