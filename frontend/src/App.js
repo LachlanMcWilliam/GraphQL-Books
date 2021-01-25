@@ -1,14 +1,20 @@
-import logo from "./logo.svg";
 import "./App.css";
+import { ApolloClient, ApolloProvider } from "@apollo/client";
 
 import BookList from "./components/BookList";
 
+const client = new ApolloClient({
+  uri: "http:/books.dev/graphql",
+});
+
 function App() {
   return (
-    <div className="App">
-      <h1>Reading List</h1>
-      <BookList />
-    </div>
+    <ApolloProvider client={client}>
+      <div id="main" className="App">
+        <h1>Reading List</h1>
+        <BookList />
+      </div>
+    </ApolloProvider>
   );
 }
 
