@@ -15,9 +15,6 @@ spec:
       containers:
       - name: graphql-frontend
         image: lachlanmcwilliam/graphql-frontend-netninja
-        env:
-          - name: GRAPHQL_SERVER_URL
-            value: "http:/localhost:3000/graphql"
 ---
 apiVersion: v1
 kind: Service
