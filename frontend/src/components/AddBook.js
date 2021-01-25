@@ -13,8 +13,24 @@ const GET_AUTHORS = gql`
 const AddBook = () => {
   const { loading, error, data } = useQuery(GET_AUTHORS);
 
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+
+  const getAuthorsSelectors = () => {
+    if (!loading && !error) {
+      return (
+        <>
+          <option>Select Author</option>
+          {data.authors.map((author) => {
+            return <option key={author.id}>{author.name}</option>;
+          })}
+        </>
+      );
+    } else if (error) {
+      return <option disabled>There was an error</option>;
+    } else {
+      return <option disabled>Loading...</option>;
+    }
+  };
 
   return (
     <form id="add-book">
@@ -30,12 +46,7 @@ const AddBook = () => {
 
       <div className="field">
         <label>Author: </label>
-        <select>
-          <option>Select Author</option>
-          {data.authors.map((author) => {
-            return <option key={author.id}>{author.name}</option>;
-          })}
-        </select>
+        <select>{getAuthorsSelectors()}</select>
       </div>
 
       <button>+</button>
