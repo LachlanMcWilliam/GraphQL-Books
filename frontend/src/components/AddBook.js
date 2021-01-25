@@ -25,8 +25,6 @@ const AddBook = () => {
           })}
         </>
       );
-    } else if (error) {
-      return <option disabled>There was an error</option>;
     } else {
       return <option disabled>Loading...</option>;
     }
